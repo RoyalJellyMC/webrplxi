@@ -1,0 +1,2792 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurusan Rekayasa Perangkat Lunak - SMKN 10 Semarang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="logojurusan-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        :root {
+            --maroon: #7D1E1E;
+            --maroon-dark: #5A1515;
+            --maroon-light: #A52A2A;
+            --cream: #F5E6D3;
+            --gold: #D4AF37;
+            --copper: #B87333;
+            --gray-light: #F8F8F8;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--maroon) 0%, var(--maroon-dark) 100%);
+        }
+        
+        .card-gradient {
+            background: linear-gradient(135deg, var(--cream) 0%, #FFFFFF 100%);
+        }
+        
+        .section-gradient {
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--cream) 100%);
+        }
+        
+        .text-maroon {
+            color: var(--maroon);
+        }
+        
+        .bg-maroon {
+            background-color: var(--maroon);
+        }
+        
+        .bg-maroon-light {
+            background-color: var(--maroon-light);
+        }
+        
+        .bg-cream {
+            background-color: var(--cream);
+        }
+        
+        .bg-gold {
+            background-color: var(--gold);
+        }
+        
+        .border-maroon {
+            border-color: var(--maroon);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(125, 30, 30, 0.15);
+            border-color: var(--maroon-light);
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 3px solid var(--cream);
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(125, 30, 30, 0.2);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(125, 30, 30, 0.9) 0%, rgba(212, 175, 55, 0.9) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 20px rgba(125, 30, 30, 0.1);
+            border-bottom: 2px solid var(--maroon-light);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 3% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid var(--maroon-light);
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-60px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .close {
+            color: var(--maroon);
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px 25px;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: var(--maroon-dark);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--maroon);
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(125, 30, 30, 0.3);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--maroon-dark);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(125, 30, 30, 0.4);
+        }
+        
+        .loading-spinner {
+            border: 4px solid var(--cream);
+            border-top: 4px solid var(--maroon);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+            border: 2px solid var(--maroon-light);
+        }
+        
+        .filter-btn.active {
+            background: var(--maroon);
+            color: white;
+            border-color: var(--maroon);
+        }
+        
+        .filter-btn:hover:not(.active) {
+            background: var(--cream);
+            border-color: var(--maroon);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(125, 30, 30, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(125, 30, 30, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(125, 30, 30, 0);
+            }
+        }
+        
+        .btn-primary {
+            background: var(--maroon);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: var(--maroon-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(125, 30, 30, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--maroon);
+            border: 2px solid var(--maroon);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--maroon);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .icon-box:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cream);
+            color: var(--maroon);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--maroon);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .stat-card {
+            background: white;
+            border: 1px solid var(--cream);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(125, 30, 30, 0.1);
+            border-color: var(--maroon-light);
+        }
+        
+        .prestasi-item {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+        
+        .prestasi-item:hover {
+            border-left-color: var(--gold);
+            background: var(--cream);
+            transform: translateX(8px);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .contact-card {
+            background: white;
+            border: 1px solid var(--cream);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(125, 30, 30, 0.1);
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--maroon);
+            box-shadow: 0 0 0 3px rgba(125, 30, 30, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: var(--maroon);
+        }
+        
+        .clickable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .clickable:hover {
+            transform: scale(1.02);
+        }
+        
+        .info-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold);
+            color: var(--maroon);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card-hover:hover .info-badge {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="scroll-smooth bg-gray-50">
+    <!-- Loading Screen -->
+    <!-- <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="loading-spinner"></div>
+            <p class="mt-4 text-maroon font-medium">Memuat website...</p>
+        </div>
+    </div> -->
+
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div>
+                        <img src="logojurusan-removebg-preview.png" alt="Logo Jurusan RPL" class="w-full h-11 object-cover">
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-maroon">RPL SMKN 10</span>
+                        <p class="text-xs text-gray-600">Rekayasa Perangkat Lunak</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 ml-auto mr-6">
+                    <a href="#home" class="nav-link text-gray-700 font-medium">Beranda</a>
+                    <a href="#visi-misi" class="nav-link text-gray-700 font-medium">Visi Misi</a>
+                    <a href="#program" class="nav-link text-gray-700 font-medium">Program Keahlian</a>
+                    <a href="#fasilitas" class="nav-link text-gray-700 font-medium">Fasilitas</a>
+                    <a href="login/index.html"class="nav-link bg-maroon text-white px-4 py-2 rounded-lg hover:bg-yellow-400 font-medium transition">Login</a>
+                </div>
+                 <div class="flex items-center space-x-4">
+                <!-- Titik 3 Dropdown -->
+                <div class="relative">
+                    <button id="dots-menu-btn">
+                        <i class="fas fa-bars text-2xl text-gray-800"></i>
+                    </button>
+                    <!-- Dropdown -->
+                    <div id="dots-menu" class="hidden absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg">
+                        <a href="#guru" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Guru</a>
+                        <a href="#siswa" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Siswa</a>
+                        <a href="#industri" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Industri</a>
+                        <a href="#karir" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Karir</a>
+                        <a href="#galeri" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Galeri</a>
+                        <a href="#fasilitas" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Fasilitas</a>
+                    </div>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden">
+                    <i class="fas fa-bars text-2xl text-maroon"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg border-t border-maroon-light">
+            <div class="px-6 py-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-maroon transition font-medium">Beranda</a>
+                <a href="#visi-misi" class="block text-gray-700 hover:text-maroon transition font-medium">Visi Misi</a>
+                <a href="#program" class="block text-gray-700 hover:text-maroon transition font-medium">Program Keahlian</a>
+                <a href="#fasilitas" class="block text-gray-700 hover:text-maroon transition font-medium">Fasilitas</a>
+                <a href="#guru" class="block text-gray-700 hover:text-maroon transition font-medium">Guru</a>
+                <a href="#siswa" class="block text-gray-700 hover:text-maroon transition font-medium">Siswa</a>
+                <a href="#industri" class="block text-gray-700 hover:text-maroon transition font-medium">Industri</a>
+                <a href="#karir" class="block text-gray-700 hover:text-maroon transition font-medium">Karir</a>
+                <a href="#galeri" class="block text-gray-700 hover:text-maroon transition font-medium">Galeri</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+    // Toggle hamburger mobile menu
+    document.getElementById("mobile-menu-btn").addEventListener("click", function () {
+        document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
+
+    // Toggle titik 3 menu
+    document.getElementById("dots-menu-btn").addEventListener("click", function () {
+        document.getElementById("dots-menu").classList.toggle("hidden");
+    });
+</script>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white min-h-screen flex items-center relative overflow-hidden">
+
+        
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-20 w-80 h-80 bg-gold rounded-full"></div>
+            <div class="absolute bottom-20 right-20 w-100 h-96 bg-gold rounded-full"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-fadeInUp">
+                    <div class="flex items-center mb-6">
+                        <div>
+                            <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+                                Jurusan <span class="text-gold">Rekayasa Perangkat Lunak</span>
+                            </h1>
+                            <p class="text-xl opacity-90 leading-relaxed mt-6">
+                                SMKN 10 Semarang - Mencetak Generasi IT Profesional, Inovatif, dan Siap Kerja</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="scrollToSection('program')" class="btn-primary px-8 py-3 rounded-lg font-semibold pulse">
+                            <i class="fas fa-rocket mr-2"></i> Pelajari Lebih Lanjut
+                        </button>
+                        <button onclick="scrollToSection('galeri')" class="btn-secondary px-8 py-3 rounded-lg font-semibold">
+                            <i class="fas fa-images mr-2"></i> Lihat Galeri
+                        </button>
+                    </div>
+                    <div class="mt-8 flex items-center space-x-8">
+                        <div class="text-center clickable" onclick="openModal('statistikModal')">
+                            <div class="text-4xl font-bold text-gold">100%</div>
+                            <div class="text-sm opacity-80">Tingkat Kelulusan</div>
+                        </div>
+                        <div class="text-center clickable" onclick="openModal('siswaTotalModal')">
+                            <div class="text-4xl font-bold text-gold">240+</div>
+                            <div class="text-sm opacity-80">Siswa Aktif</div>
+                        </div>
+                        <div class="text-center clickable" onclick="openModal('mitraModal')">
+                            <div class="text-4xl font-bold text-gold">50+</div>
+                            <div class="text-sm opacity-80">Mitra Industri</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="komputer.jpg" alt="RPL Hero" class="max-w-md md:max-w-lg rounded-2xl shadow-2xl transform hover:scale-105 transition duration-500 border-4 border-gold clickable"
+     onclick="openModal('heroDetailModal')">
+
+                        <div class="absolute -bottom-6 -right-6 bg-gold text-maroon px-6 py-3 rounded-xl font-bold shadow-lg">
+                            <i class="fas fa-star mr-2"></i> Jurusan Unggulan
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi Misi Section -->
+    <section id="visi-misi" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Visi & Misi</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Landasan kami dalam mencetak generasi IT yang kompeten dan berkarakter</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-gradient p-8 rounded-2xl shadow-lg card-hover relative" onclick="openModal('visiModal')">
+                    <div class="info-badge">Klik untuk detail</div>
+                    <div class="icon-box bg-maroon mb-6 mx-auto">
+                        <i class="fas fa-eye text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-maroon">Visi</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Menjadi kompetensi keahlian yang unggul dalam menghasilkan lulusan yang beriman, berakhlak mulia, cerdas, terampil, mandiri, dan berwawasan global di bidang Rekayasa Perangkat Lunak.
+                    </p>
+                    <div class="text-maroon font-medium text-center">
+                        <i class="fas fa-arrow-right mr-2"></i>Klik untuk detail lengkap
+                    </div>
+                </div>
+                <div class="card-gradient p-8 rounded-2xl shadow-lg card-hover relative" onclick="openModal('misiModal')">
+                    <div class="info-badge">Klik untuk detail</div>
+                    <div class="icon-box bg-gold mb-6 mx-auto">
+                        <i class="fas fa-bullseye text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-maroon">Misi</h3>
+                    <ul class="text-gray-700 space-y-2 mb-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-maroon mt-1 mr-2"></i>
+                            <span>Meningkatkan keimanan dan ketaqwaan peserta didik melalui kegiatan keagamaan yang terstruktur.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-maroon mt-1 mr-2"></i>
+                            <span>Meningkatkan mutu pendidikan dan pelatihan di bidang Rekayasa Perangkat Lunak melalui pembelajaran berbasis teknologi dan industri.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-maroon mt-1 mr-2"></i>
+                            <span>Meningkatkan kompetensi peserta didik agar siap bersaing di dunia kerja, melanjutkan pendidikan, atau berwirausaha.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-maroon mt-1 mr-2"></i>
+                            <span>Meningkatkan kerja sama dengan DUDI (Dunia Usaha dan Dunia Industri) dalam pelaksanaan praktik kerja industri, teaching factory, dan sertifikasi kompetensi.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-maroon mt-1 mr-2"></i>
+                            <span>Mengembangkan sikap profesional dan karakter siswa, seperti disiplin, tanggung jawab, dan etos kerja tinggi.</span>
+                        </li>
+                    </ul>
+                    <div class="text-maroon font-medium text-center">
+                        <i class="fas fa-arrow-right mr-2"></i>Klik untuk detail lengkap
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Keahlian Section -->
+    <section id="program" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Program Keahlian</h2>
+                <p class="text-gray-600 mt-4">Kurikulum komprehensif untuk menghasilkan ahli IT profesional</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('programWebModal')">
+                    <div class="info-badge">Detail Program</div>
+                    <div class="bg-gradient-to-br from-maroon to-maroon-dark w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-laptop-code text-maroon text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">Pemrograman Web</h3>
+                    <p class="text-gray-600 mb-4">
+                        Mempelajari pengembangan website modern dengan teknologi terkini.
+                    </p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Frontend Development
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Backend Development
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Database Management
+                        </div>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg font-medium">
+                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('programMobileModal')">
+                    <div class="info-badge">Detail Program</div>
+                    <div class="bg-gradient-to-br from-gold to-maroon w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-maroon text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">Pemrograman Mobile</h3>
+                    <p class="text-gray-600 mb-4">
+                        Pengembangan aplikasi mobile untuk Android dan iOS.
+                    </p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Android Development
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            iOS Development
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Cross-platform Apps
+                        </div>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg font-medium">
+                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('programDatabaseModal')">
+                    <div class="info-badge">Detail Program</div>
+                    <div class="bg-gradient-to-br from-maroon-light to-maroon w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-database text-maroon text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">Database & AI</h3>
+                    <p class="text-gray-600 mb-4">
+                        Manajemen database dan pengenalan dasar AI.
+                    </p>
+                    <div class="space-y-2 mb-4">
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            SQL & NoSQL
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Machine Learning
+                        </div>
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i class="fas fa-check text-gold mr-2"></i>
+                            Data Analytics
+                        </div>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg font-medium">
+                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas Section -->
+    <section id="fasilitas" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Fasilitas</h2>
+                <p class="text-gray-600 mt-4">Infrastruktur modern untuk mendukung pembelajaran optimal</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('fasilitasLabModal')">
+                    <div class="info-badge">Lihat Detail</div>
+                    <div class="icon-box bg-maroon w-20 h-20 mx-auto mb-4">
+                        <i class="fas fa-desktop text-white text-3xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-maroon">Lab Komputer</h3>
+                    <p class="text-sm text-gray-600 mb-3">3 ruang lab dengan 120 unit komputer</p>
+                    <div class="text-maroon text-sm font-medium">
+                        <i class="fas fa-info-circle mr-1"></i>Klik untuk spesifikasi
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('fasilitasInternetModal')">
+                    <div class="info-badge">Lihat Detail</div>
+                    <div class="icon-box bg-gold w-20 h-20 mx-auto mb-4">
+                        <i class="fas fa-wifi text-white text-3xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-maroon">Internet Cepat</h3>
+                    <p class="text-sm text-gray-600 mb-3">Koneksi fiber optic 100 Mbps</p>
+                    <div class="text-maroon text-sm font-medium">
+                        <i class="fas fa-info-circle mr-1"></i>Klik untuk detail
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('fasilitasServerModal')">
+                    <div class="info-badge">Lihat Detail</div>
+                    <div class="icon-box bg-maroon-light w-20 h-20 mx-auto mb-4">
+                        <i class="fas fa-server text-white text-3xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-maroon">Server Lokal</h3>
+                    <p class="text-sm text-gray-600 mb-3">Server untuk praktikum siswa</p>
+                    <div class="text-maroon text-sm font-medium">
+                        <i class="fas fa-info-circle mr-1"></i>Klik untuk spesifikasi
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('fasilitasPerpustakaanModal')">
+                    <div class="info-badge">Lihat Detail</div>
+                    <div class="icon-box bg-gold w-20 h-20 mx-auto mb-4">
+                        <i class="fas fa-book text-white text-3xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2 text-maroon">Perpustakaan Digital</h3>
+                    <p class="text-sm text-gray-600 mb-3">E-book & referensi IT lengkap</p>
+                    <div class="text-maroon text-sm font-medium">
+                        <i class="fas fa-info-circle mr-1"></i>Klik untuk koleksi
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guru Pembimbing Section -->
+    <section id="guru" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Guru Pembimbing</h2>
+                <p class="text-gray-600 mt-4">Tim pengajar profesional dan berpengalaman</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover relative" onclick="openModal('guru1Modal')">
+                    <div class="info-badge">Profil Lengkap</div>
+                    <img src="https://smk10semarang.sch.id/wp-content/uploads/2023/08/Gatot_2-600x450.jpeg" alt="Dr. Ahmad Fauzi" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-maroon">R. Gatot Nurhadi Priyono, S.Kom.</h3>
+                        <p class="text-maroon-light mb-2">Kepala Program Keahlian</p>
+                        <p class="text-sm text-gray-600 mb-4">Spesialisasi:  web front-endg</p>
+                        <div class="flex justify-center space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 text-center text-maroon text-sm font-medium">
+                            <i class="fas fa-user-circle mr-1"></i>Lihat Profil Lengkap
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover relative" onclick="openModal('guru2Modal')">
+                    <div class="info-badge">Profil Lengkap</div>
+                    <img src="paksona.jpg" alt="Sonalita Wiguna S.Pd" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-maroon">Sonalita Wiguna, S.Pd.</h3>
+                        <p class="text-maroon-light mb-2">Guru Pembimbing</p>
+                        <p class="text-sm text-gray-600 mb-4">Spesialisasi: pemograman mobile</p>
+                        <div class="flex justify-center space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 text-center text-maroon text-sm font-medium">
+                            <i class="fas fa-user-circle mr-1"></i>Lihat Profil Lengkap
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover relative" onclick="openModal('guru3Modal')">
+                    <div class="info-badge">Profil Lengkap</div>
+                    <img src="pakari.jpg" alt="Budi Santoso" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-maroon">Ari Wijayanto, S..Kom.</h3>
+                        <p class="text-maroon-light mb-2">Guru Pembimbing</p>
+                        <p class="text-sm text-gray-600 mb-4">Spesialisasi: Guru Mapel</p>
+                        <div class="flex justify-center space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                        <div class="mt-4 text-center text-maroon text-sm font-medium">
+                            <i class="fas fa-user-circle mr-1"></i>Lihat Profil Lengkap
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Siswa Aktif Section -->
+    <section id="siswa" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Siswa Aktif</h2>
+                <p class="text-gray-600 mt-4">Prestasi dan aktivitas siswa jurusan RPL</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="stat-card p-8 rounded-2xl text-center" onclick="openModal('siswaTotalModal')">
+                    <div class="text-5xl font-bold text-maroon mb-2">282</div>
+                    <p class="text-gray-700 font-medium">Total Siswa Aktif</p>
+                    <div class="mt-2 text-sm text-gold">
+                        <i class="fas fa-arrow-up"></i> tahun
+                    </div>
+                    <div class="mt-3 text-maroon text-sm">
+                        <i class="fas fa-info-circle"></i> Klik untuk detail
+                    </div>
+                </div>
+                <div class="stat-card p-8 rounded-2xl text-center" onclick="openModal('kelasModal')">
+                    <div class="text-5xl font-bold text-maroon mb-2">8</div>
+                    <p class="text-gray-700 font-medium">Kelas Aktif</p>
+                    <div class="mt-2 text-sm text-gold">
+                        <i class="fas fa-users"></i> Rata-rata 36 siswa/kelas
+                    </div>
+                    <div class="mt-3 text-maroon text-sm">
+                        <i class="fas fa-info-circle"></i> Klik untuk detail
+                    </div>
+                </div>
+                <div class="stat-card p-8 rounded-2xl text-center" onclick="openModal('kelulusanModal')">
+                    <div class="text-5xl font-bold text-maroon mb-2">100%</div>
+                    <p class="text-gray-700 font-medium">Tingkat Kelulusan</p>
+                    <div class="mt-2 text-sm text-gold">
+                        <i class="fas fa-star"></i> Di atas rata-rata nasional
+                    </div>
+                    <div class="mt-3 text-maroon text-sm">
+                        <i class="fas fa-info-circle"></i> Klik untuk detail
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h3 class="text-2xl font-semibold mb-6 text-maroon">Prestasi Terbaru</h3>
+                <div class="space-y-4">
+                    <div class="prestasi-item flex items-start space-x-4 p-4 rounded-lg cursor-pointer transition" onclick="openModal('prestasi1Modal')">
+                        <div class="bg-gold p-3 rounded-full">
+                            <i class="fas fa-trophy text-maroon text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-lg text-maroon">Juara 3 Lomba Peneliti Belia dan International Scientific Paper Competition</h4>
+                            <p class="text-sm text-gray-600 mt-1">Dua siswa berhasil mengukir prestasi dengan meraih juara 3 tingkat nasionaly</p>
+                            <div class="mt-2">
+                                <span class="text-xs bg-maroon-light text-white px-2 py-1 rounded">Kompetisi</span>
+                                <span class="text-xs bg-gold text-maroon px-2 py-1 rounded ml-2">Provinsi</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-right text-maroon-light"></i>
+                    </div>
+                    <div class="prestasi-item flex items-start space-x-4 p-4 rounded-lg cursor-pointer transition" onclick="openModal('prestasi2Modal')">
+                        <div class="bg-maroon p-3 rounded-full">
+                            <i class="fas fa-medal text-gold text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-lg text-maroon">Dinus Application Competition (DINACOM) 2025 kategori AIDeathon</h4>
+                            <p class="text-sm text-gray-600 mt-1">Tim MMT dari SMKN 10 berhasil merebut Juara 1</p>
+                            <div class="mt-2">
+                                <span class="text-xs bg-maroon-light text-white px-2 py-1 rounded">Hackathon</span>
+                                <span class="text-xs bg-gold text-maroon px-2 py-1 rounded ml-2">Nasional</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-right text-maroon-light"></i>
+                    </div>
+                    <div class="prestasi-item flex items-start space-x-4 p-4 rounded-lg cursor-pointer transition" onclick="openModal('prestasi3Modal')">
+                        <div class="bg-gold p-3 rounded-full">
+                            <i class="fas fa-certificate text-white text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-lg text-maroon">Nasional Indonesia Akills Competition bidang Web Technologies.</h4>
+                            <p class="text-sm text-gray-600 mt-1">2 siswa berhasil mendapatkan 10 besar</p>
+                            <div class="mt-2">
+                                <span class="text-xs bg-maroon-light text-white px-2 py-1 rounded">Sertifikasi</span>
+                                <span class="text-xs bg-gold text-maroon px-2 py-1 rounded ml-2">Internasional</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-right text-maroon-light"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kerjasama Industri Section -->
+    <section id="industri" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Kerjasama Industri</h2>
+                <p class="text-gray-600 mt-4">Mitra industri untuk pengembangan karir siswa</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('industri1Modal')">
+                    <div class="info-badge">Detail Kerjasama</div>
+                    <img src="https://e7.pngegg.com/pngimages/326/772/png-clipart-logo-telkom-indonesia-symbol-telkom-group-logo-telkomsel-text-logo.png" alt="Telkom Indonesia" class="mx-auto mb-4 h-20 object-contain">
+                    <h3 class="font-semibold text-maroon">PT. Telkom Indonesia</h3>
+                    <p class="text-sm text-gray-600 mt-2">Magang & Rekrutmen</p>
+                    <div class="mt-3 text-maroon text-sm">
+                        <i class="fas fa-handshake mr-1"></i>Lihat Detail
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('industri2Modal')">
+                    <div class="info-badge">Detail Kerjasama</div>
+                    <img src="logo_crocodic.png" alt="Gojek Indonesia" class="mx-auto mb-4 h-20 object-contain">
+                    <h3 class="font-semibold text-maroon"></h3>crocodic
+                    <p class="text-sm text-gray-600 mt-2">Program Beasiswa</p>
+                    <div class="mt-3 text-maroon text-sm"> 
+                        <i class="fas fa-handshake mr-1"></i>Lihat Detail
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('industri3Modal')">
+                    <div class="info-badge">Detail Kerjasama</div>
+                    <img src=" https://bapakpucungstudio.id/wp-content/uploads/2022/10/Logo-Bapak-Pucung2-300x99.png" alt="Tokopedia" class="mx-auto mb-4 h-20 object-contain">
+                    <h3 class="font-semibold text-maroon">Bapak Pucung Sudio</h3>
+                    <p class="text-sm text-gray-600 mt-2">Kurikulum Bersama</p>
+                    <div class="mt-3 text-maroon text-sm">
+                        <i class="fas fa-handshake mr-1"></i>Lihat Detail
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover text-center relative" onclick="openModal('industri4Modal')">
+                    <div class="info-badge">Detail Kerjasama</div>
+                    <img src="https://can.co.id/wp-content/uploads/2022/02/logo-CAN-CREATIVE-colour-new-01.png" alt="Shopee" class="mx-auto mb-4 h-20 object-contain">
+                    <h3 class="font-semibold text-maroon">Can Creative</h3>
+                    <p class="text-sm text-grSay-600 mt-2">Magang Guru</p>
+                    <div class="mt-3 text-maroon text-sm">
+                        <i class="fas fa-handshake mr-1"></i>Lihat Detail
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-r from-cream to-white rounded-2xl p-8 shadow-lg">
+                <h3 class="text-2xl font-semibold mb-6 text-maroon">Program Kerjasama</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg text-center card-hover relative" onclick="openModal('programMagangModal')">
+                        <div class="info-badge">Detail Program</div>
+                        <div class="icon-box bg-maroon mx-auto mb-4">
+                            <i class="fas fa-handshake text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2 text-maroon">Magang Industri</h4>
+                        <p class="text-sm text-gray-600">Kesempatan magang di perusahaan teknologi terkemuka</p>
+                        <div class="mt-3 text-maroon text-sm font-medium">
+                            Detail Program <i class="fas fa-arrow-right ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg text-center card-hover relative" onclick="openModal('programBeasiswaModal')">
+                        <div class="info-badge">Detail Program</div>
+                        <div class="icon-box bg-gold mx-auto mb-4">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2 text-maroon">Beasiswa Pendidikan</h4>
+                        <p class="text-sm text-gray-600">Beasiswa untuk siswa berprestasi dari mitra industri</p>
+                        <div class="mt-3 text-maroon text-sm font-medium">
+                            Detail Program <i class="fas fa-arrow-right ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg text-center card-hover relative" onclick="openModal('programRekrutmenModal')">
+                        <div class="info-badge">Detail Program</div>
+                        <div class="icon-box bg-maroon mx-auto mb-4">
+                            <i class="fas fa-briefcase text-white text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2 text-maroon">Penempatan Kerja</h4>
+                        <p class="text-sm text-gray-600">Program rekrutmen langsung untuk lulusan terbaik</p>
+                        <div class="mt-3 text-maroon text-sm font-medium">
+                            Detail Program <i class="fas fa-arrow-right ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jenjang Karir Section -->
+    <section id="karir" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Jenjang Karir</h2>
+                <p class="text-gray-600 mt-4">Peluang karir yang menanti lulusan RPL SMKN 10 Semarang</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('karir1Modal')">
+                    <div class="info-badge">Detail Pekerjaan</div>
+                    <div class="bg-gradient-to-br from-maroon to-maroon-dark w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">Web Developer</h3>
+                    <p class="text-gray-600 mb-4">Mengembangkan website dan aplikasi web untuk berbagai kebutuhan bisnis</p>
+                    <div class="bg-cream rounded-lg p-3 mb-4">
+                        <p class="text-sm font-medium text-maroon">Rata-rata Gaji</p>
+                        <p class="text-xl font-bold text-maroon">Rp 5-15 Juta/bulan</p>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg">
+                        <i class="fas fa-info-circle mr-2"></i>Detail Pekerjaan
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('karir2Modal')">
+                    <div class="info-badge">Detail Pekerjaan</div>
+                    <div class="bg-gradient-to-br from-gold to-maroon w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">Mobile Developer</h3>
+                    <p class="text-gray-600 mb-4">Membuat aplikasi mobile untuk Android dan iOS</p>
+                    <div class="bg-cream rounded-lg p-3 mb-4">
+                        <p class="text-sm font-medium text-maroon">Rata-rata Gaji</p>
+                        <p class="text-xl font-bold text-maroon">Rp 6-18 Juta/bulan</p>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg">
+                        <i class="fas fa-info-circle mr-2"></i>Detail Pekerjaan
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('karir3Modal')">
+                    <div class="info-badge">Detail Pekerjaan</div>
+                    <div class="bg-gradient-to-br from-maroon-light to-maroon w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-database text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">Database Administrator</h3>
+                    <p class="text-gray-600 mb-4">Mengelola dan mengoptimalkan sistem database perusahaan</p>
+                    <div class="bg-cream rounded-lg p-3 mb-4">
+                        <p class="text-sm font-medium text-maroon">Rata-rata Gaji</p>
+                        <p class="text-xl font-bold text-maroon">Rp 7-20 Juta/bulan</p>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg">
+                        <i class="fas fa-info-circle mr-2"></i>Detail Pekerjaan
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('karir4Modal')">
+                    <div class="info-badge">Detail Pekerjaan</div>
+                    <div class="bg-gradient-to-br from-maroon to-gold w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-paint-brush text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">UI/UX Designer</h3>
+                    <p class="text-gray-600 mb-4">Merancang antarmuka pengguna yang menarik dan mudah digunakan</p>
+                    <div class="bg-cream rounded-lg p-3 mb-4">
+                        <p class="text-sm font-medium text-maroon">Rata-rata Gaji</p>
+                        <p class="text-xl font-bold text-maroon">Rp 5-12 Juta/bulan</p>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg">
+                        <i class="fas fa-info-circle mr-2"></i>Detail Pekerjaan
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('karir5Modal')">
+                    <div class="info-badge">Detail Pekerjaan</div>
+                    <div class="bg-gradient-to-br from-maroon-dark to-maroon w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">Cyber Security Analyst</h3>
+                    <p class="text-gray-600 mb-4">Melindungi sistem dan data dari ancaman keamanan</p>
+                    <div class="bg-cream rounded-lg p-3 mb-4">
+                        <p class="text-sm font-medium text-maroon">Rata-rata Gaji</p>
+                        <p class="text-xl font-bold text-maroon">Rp 8-25 Juta/bulan</p>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg">
+                        <i class="fas fa-info-circle mr-2"></i>Detail Pekerjaan
+                    </button>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg card-hover relative" onclick="openModal('karir6Modal')">
+                    <div class="info-badge">Detail Pekerjaan</div>
+                    <div class="bg-gradient-to-br from-gold to-maroon w-16 h-16 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-maroon">AI Engineer</h3>
+                    <p class="text-gray-600 mb-4">Mengembangkan sistem kecerdasan buatan dan machine learning</p>
+                    <div class="bg-cream rounded-lg p-3 mb-4">
+                        <p class="text-sm font-medium text-maroon">Rata-rata Gaji</p>
+                        <p class="text-xl font-bold text-maroon">Rp 10-30 Juta/bulan</p>
+                    </div>
+                    <button class="w-full btn-primary py-2 rounded-lg">
+                        <i class="fas fa-info-circle mr-2"></i>Detail Pekerjaan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Section -->
+    <section id="galeri" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Galeri Kegiatan</h2>
+                <p class="text-gray-600 mt-4">Dokumentasi kegiatan dan prestasi jurusan RPL</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <button class="filter-btn active px-6 py-2 rounded-full font-medium" onclick="filterGallery('all')">
+                    Semua
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium" onclick="filterGallery('pembelajaran')">
+                    Pembelajaran
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium" onclick="filterGallery('kompetisi')">
+                    Kompetisi
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full font-medium" onclick="filterGallery('kerja-sama')">
+                    Kerja Sama
+                </button>
+            </div>
+            
+            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="pembelajaran" onclick="openGalleryModal('gallery1')">
+                    <img src="fadel.jpg" alt="Praktikum Pemrograman" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Praktikum Pemrograman</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="kompetisi" onclick="openGalleryModal('gallery2')">
+                    <img src="kejuaraan.jpg" alt="LKS Tingkat Provinsi" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Peneliti Belia dan International Scientific Paper Competition</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="kerja-sama" onclick="openGalleryModal('gallery3')">
+                    <img src="https://smk10semarang.sch.id/wp-content/uploads/2024/10/Can-Creative.jpeg" alt="Kunjungan Industri" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Kunjungan Industri</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="ekskul" onclick="openGalleryModal('gallery4')">
+                    <img src="komputer.jpg" alt="Club Programming" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Komputer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="pembelajaran" onclick="openGalleryModal('gallery5')">
+                    <img src="thoriq.jpg" alt="Presentasi Proyek" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Presentasi Proyek</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="kompetisi" onclick="openGalleryModal('gallery6')">
+                    <img src="malik.jpg" alt="Hackathon 2023" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Dinakom</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="kerja-sama" onclick="openGalleryModal('gallery7')">
+                    <img src="https://smk10semarang.sch.id/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-01-at-11.37.20_11zon.jpeg" alt="Workshop Industri" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Workshop Industri</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl overflow-hidden shadow-lg" data-category="ekskul" onclick="openGalleryModal('gallery8')">
+                    <img src="lab 4.jpg" alt="Robotika Club" class="w-full h-full object-cover">
+                    <div class="gallery-overlay">
+                        <div class="text-center text-white">
+                            <i class="fas fa-search-plus text-4xl mb-2"></i>
+                            <p class="text-sm font-medium">Lab komputer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Maps Section -->
+<section id="maps" class="py-20">
+<div class="container mx-auto px-6 text-center">
+<h2 class="text-3xl font-bold text-maroon mb-6 section-title">Lokasi Kami</h2>
+<div class="rounded-2xl overflow-hidden shadow-lg border-4 border-gold">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7920.688226274685!2d110.39884783859256!3d-6.968669316198053!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70f4c8081bffaf%3A0xbb522f8061199b3!2sSMK%20Negeri%2010%20Semarang!5e0!3m2!1sid!2sid!4v1759039711588!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+
+
+
+<!-- ... Footer dan bagian lainnya ... -->
+</body>
+</html>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-maroon mb-4 section-title">Hubungi Kami</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-maroon">Informasi Kontak</h3>
+                    <div class="space-y-4">
+                        <div class="contact-card p-5 rounded-xl shadow" onclick="openModal('alamatModal')">
+                            <div class="flex items-center space-x-4">
+                                <div class="icon-box bg-maroon">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-maroon">Alamat</p>
+                                    <p class="text-sm text-gray-600">Jl. Kokrosono No. 75, Semarang, Jawa Tengah</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-card p-5 rounded-xl shadow" onclick="openModal('teleponModal')">
+                            <div class="flex items-center space-x-4">
+                                <div class="icon-box bg-gold">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-maroon">Telepon</p>
+                                    <p class="text-sm text-gray-600">+62 812-2690-7008</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-card p-5 rounded-xl shadow" onclick="openModal('emailModal')">
+                            <div class="flex items-center space-x-4">
+                                <div class="icon-box bg-maroon-light">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-maroon">Email</p>
+                                    <p class="text-sm text-gray-600">smk10smg@yahoo.co.id</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-card p-5 rounded-xl shadow" onclick="openModal('websiteModal')">
+                            <div class="flex items-center space-x-4">
+                                <div class="icon-box bg-gold">
+                                    <i class="fas fa-globe text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-maroon">Website</p>
+                                    <p class="text-sm text-gray-600">www.smk10semarang.sch.id/mengenal-jurusan-rplg-smkn-10-semarang/</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h4 class="font-semibold mb-4 text-maroon">Ikuti Kami</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="social-icon" onclick="openModal('socialModal')">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon" onclick="openModal('socialModal')">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon" onclick="openModal('socialModal')">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon" onclick="openModal('socialModal')">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 text-maroon">Kirim Pesan</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Subjek</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Pesan</label>
+                            <textarea required rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none transition resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-primary px-6 py-3 rounded-lg font-medium">
+                            <i class="fas fa-paper-plane mr-2"></i>Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <span class="text-2xl font-bold">RPL SMKN 10</span>
+                    </div>
+                    <p class="text-sm text-gray-300">Jurusan Rekayasa Perangkat Lunak SMKN 10 Semarang - Mencetak generasi IT profesional dan inovatif.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-gold">Link Cepat</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><a href="#home" class="hover:text-gold transition">Beranda</a></li>
+                        <li><a href="#program" class="hover:text-gold transition">Program Keahlian</a></li>
+                        <li><a href="#fasilitas" class="hover:text-gold transition">Fasilitas</a></li>
+                        <li><a href="#karir" class="hover:text-gold transition">Jenjang Karir</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-gold">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-gray-300">
+                        <li><i class="fas fa-phone mr-2"></i><a href="https://web.whatsapp.com/send?phone=6281226907008&text=Saya%20ingin%20bertanya%20seputar%20sekolah%20ini.." target="_blank">+62 812-2690-7008</a></li>
+                        <li><i class="fas fa-envelope mr-2"></i><a href="mailto:smk10smg@yahoo.co.id" target="_blank">smk10smg@yahoo.co.id</a></li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i><a href="https://maps.app.goo.gl/3y6BrQsWMBe9fXw77" target="_blank">Jl. Kokrosono No. 75,<br>Semarang, Jawa Tengah</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-gold">Newsletter</h4>
+                    <p class="text-sm text-gray-300 mb-4">Dapatkan informasi terbaru dari kami</p>
+                    <form class="flex" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="Email Anda" class="bg-gray-700 text-white px-4 py-2 rounded-l-lg flex-1 focus:outline-none">
+                        <button type="submit" class="bg-gold text-maroon px-4 py-2 rounded-r-lg hover:bg-yellow-500 transition font-medium">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-gold transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gold transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gold transition">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gold transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- All Modals -->
+    <!-- Visi Modal -->
+    <div id="visiModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Visi Jurusan RPL</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <p class="text-lg leading-relaxed text-maroon">
+                        "Menjadi kompetensi keahlian yang unggul dalam menghasilkan lulusan yang beriman, berakhlak mulia, cerdas, terampil, mandiri, dan berwawasan global di bidang Rekayasa Perangkat Lunak."
+                    </p>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 text-maroon">Penjelasan Visi</h3>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start">
+                        <i class="fas fa-star text-gold mt-1 mr-3"></i>
+                        <span><strong>Program Keahlian Unggulan:</strong> Menjadi yang terdepan dalam kualitas pembelajaran dan output lulusan</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-star text-gold mt-1 mr-3"></i>
+                        <span><strong>Lulusan Kompeten:</strong> Memiliki keahlian teknis yang sesuai dengan kebutuhan industri</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-star text-gold mt-1 mr-3"></i>
+                        <span><strong>Berkarakter:</strong> Memiliki akhlak mulia dan etika kerja yang baik</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-star text-gold mt-1 mr-3"></i>
+                        <span><strong>Siap Bersaing:</strong> Mampu bersaing di pasar kerja global</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-star text-gold mt-1 mr-3"></i>
+                        <span><strong>Era Digital Global:</strong> Menyesuaikan dengan perkembangan teknologi global</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Misi Modal -->
+    <div id="misiModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Misi Jurusan RPL</h2>
+                <div class="space-y-6">
+                    <div class="bg-cream p-6 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold mb-2 text-maroon">
+                            <i class="fas fa-graduation-cap mr-2"></i>Meningkatkan keimanan dan ketaqwaan peserta didik melalui kegiatan keagamaan yang terstruktur.
+                        </h3>
+                        <p class="text-gray-700">soon...</p>
+                    </div>
+                    <div class="bg-yellow-100 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2 text-maroon">
+                            <i class="fas fa-laptop-code mr-2"></i>Meningkatkan mutu pendidikan dan pelatihan di bidang Rekayasa Perangkat Lunak melalui pembelajaran berbasis teknologi dan industri.
+                        </h3>
+                        <p class="text-gray-700">soon...</p>
+                    </div>
+                    <div class="bg-cream p-6 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold mb-2 text-maroon">
+                            <i class="fas fa-handshake mr-2"></i>Meningkatkan kompetensi peserta didik agar siap bersaing di dunia kerja, melanjutkan pendidikan, atau berwirausaha.
+                        </h3>
+                        <p class="text-gray-700">soon...</p>
+                    </div>
+                    <div class="bg-yellow-100 p-6 rounded-lg">
+                        <h3 class="text-lg font-semibold mb-2 text-maroon">
+                            <i class="fas fa-heart mr-2"></i>Meningkatkan kerja sama dengan DUDI (Dunia Usaha dan Dunia Industri) dalam pelaksanaan praktik kerja industri, teaching factory, dan sertifikasi kompetensi.
+                        </h3>
+                        <p class="text-gray-700">soon...</p>
+                    </div>
+                    <div class="bg-cream p-6 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold mb-2 text-maroon">
+                            <i class="fas fa-heart mr-2"></i>Mengembangkan sikap profesional dan karakter siswa, seperti disiplin, tanggung jawab, dan etos kerja tinggi.
+                        </h3>
+                        <p class="text-gray-700">soon...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Web Modal -->
+    <div id="programWebModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Pemrograman Web</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <p class="text-lg">Program keahlian yang mempelajari pengembangan website dan aplikasi web modern dengan teknologi terkini.</p>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-maroon">Mata Pelajaran Pokok</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Frontend Development</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• HTML5 & CSS3</li>
+                            <li>• JavaScript ES6+</li>
+                            <li>• React.js / Vue.js</li>
+                            <li>• Responsive Design</li>
+                            <li>• UI/UX Principles</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Backend Development</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• PHP / Node.js</li>
+                            <li>• Laravel / Express</li>
+                            <li>• RESTful API</li>
+                            <li>• Authentication</li>
+                            <li>• Security Best Practices</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Database Management</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• MySQL / PostgreSQL</li>
+                            <li>• MongoDB</li>
+                            <li>• Database Design</li>
+                            <li>• Query Optimization</li>
+                            <li>• Data Migration</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Tools & Frameworks</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Git & GitHub</li>
+                            <li>• Docker</li>
+                            <li>• CI/CD Pipeline</li>
+                            <li>• Testing Frameworks</li>
+                            <li>• Cloud Platforms</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-maroon">Prospek Karir</h3>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-gray-700">Lulusan dapat bekerja sebagai Frontend Developer, Backend Developer, Full Stack Developer, Web Designer, atau memulai startup teknologi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Mobile Modal -->
+    <div id="programMobileModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Pemrograman Mobile</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <p class="text-lg">Program keahlian yang fokus pada pengembangan aplikasi mobile untuk platform Android dan iOS.</p>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-maroon">Mata Pelajaran Pokok</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Android Development</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Kotlin / Java</li>
+                            <li>• Android Studio</li>
+                            <li>• Material Design</li>
+                            <li>• Firebase Integration</li>
+                            <li>• App Publishing</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">iOS Development</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Swift</li>
+                            <li>• Xcode</li>
+                            <li>• UIKit / SwiftUI</li>
+                            <li>• Core Data</li>
+                            <li>• App Store Deployment</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Cross Platform</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• React Native</li>
+                            <li>• Flutter</li>
+                            <li>• Xamarin</li>
+                            <li>• Ionic</li>
+                            <li>• Performance Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Mobile Concepts</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Mobile UI/UX</li>
+                            <li>• Device APIs</li>
+                            <li>• Push Notifications</li>
+                            <li>• Offline Storage</li>
+                            <li>• App Security</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-maroon">Prospek Karir</h3>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-gray-700">Lulusan dapat bekerja sebagai Mobile Developer, App Developer, iOS Developer, Android Developer, atau membangun aplikasi komersial.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Database Modal -->
+    <div id="programDatabaseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Database & AI</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <p class="text-lg">Program keahlian yang menggabungkan manajemen database dengan dasar-dasar kecerdasan buatan.</p>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-maroon">Mata Pelajaran Pokok</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Database Systems</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Relational Databases</li>
+                            <li>• NoSQL Databases</li>
+                            <li>• Data Modeling</li>
+                            <li>• Query Optimization</li>
+                            <li>• Database Administration</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Machine Learning</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Python for ML</li>
+                            <li>• Scikit-learn</li>
+                            <li>• TensorFlow</li>
+                            <li>• Neural Networks</li>
+                            <li>• Model Training</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Data Analytics</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Data Visualization</li>
+                            <li>• Statistical Analysis</li>
+                            <li>• Business Intelligence</li>
+                            <li>• Big Data Concepts</li>
+                            <li>• Data Mining</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">AI Applications</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Natural Language Processing</li>
+                            <li>• Computer Vision</li>
+                            <li>• Recommendation Systems</li>
+                            <li>• Chatbot Development</li>
+                            <li>• AI Ethics</li>
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-maroon">Prospek Karir</h3>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-gray-700">Lulusan dapat bekerja sebagai Database Administrator, Data Scientist, Machine Learning Engineer, AI Specialist, atau Data Analyst.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fasilitas Lab Modal -->
+    <div id="fasilitasLabModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Laboratorium Komputer</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <p class="text-lg">Fasilitas laboratorium komputer modern untuk mendukung pembelajaran praktik.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Spesifikasi</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>3 Ruang Laboratorium</strong> dengan kapasitas 40 siswa/ruang</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>120 Unit Komputer</strong> dengan spesifikasi tinggi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Processor:</strong> Intel Core i5/i7 Gen 10+</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>RAM:</strong> 16GB DDR4</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Storage:</strong> 512GB SSD</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Fitur Tambahan</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Proyektor LCD</strong> di setiap ruang</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Whiteboard Interaktif</strong> untuk presentasi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>AC Central</strong> untuk kenyamanan</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Software Lengkap</strong> untuk development</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Jam Operasional:</strong> 07:00 - 16:00</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-600"><i class="fas fa-info-circle mr-2"></i>Laboratorium juga dapat digunakan untuk kegiatan ekstrakurikuler dan proyek mandiri siswa di luar jam pelajaran.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fasilitas Internet Modal -->
+    <div id="fasilitasInternetModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Laboratorium Komputer</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <p class="text-lg">Fasilitas Wi-Fi gratis untuk mendukung pembelajaran praktik.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Spesifikasi</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>4 Wi-Fi</strong> yang tersebar setiap laboratorium</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Provider Wi-Fi:</strong> Indihome</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span><strong>Frekuensi Wi-Fi:</strong> 5 GHz</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-600"><i class="fas fa-info-circle mr-2"></i>Wi-Fi hanya diperbolehkan untuk kegiatan pembelajaran dan tidak boleh digunakan untuk bermain game.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guru 1 Modal -->
+    <div id="guru1Modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <div class="flex flex-col md:flex-row gap-6 mb-6">
+                    <img src="https://smk10semarang.sch.id/wp-content/uploads/2023/08/Gatot_2-600x450.jpeg" alt=">R. Gatot Nurhadi Priyono, S.Kom" class="w-48 h-48 rounded-lg object-cover mx-auto md:mx-0">
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-bold mb-2 text-maroon">>R. Gatot Nurhadi Priyono, S.Kom</h2>
+                        <p class="text-maroon-light font-semibold mb-4">Kepala Program Keahlian RPL</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap text-gray-500 w-6"></i>
+                                <span class="ml-3">S1 Teknik Informatika - Universitas Semarang</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-briefcase text-gray-500 w-6"></i>
+                                <span class="ml-3">22 tahun pengalaman mengajar</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-certificate text-gray-500 w-6"></i>
+                                <span class="ml-3">sertifikasi profesi guru</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Keahlian</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-maroon-light text-white px-3 py-1 rounded-full text-sm">Software Engineering</span>
+                            <span class="bg-maroon-light text-white px-3 py-1 rounded-full text-sm">Database Systems</span>
+                            <span class="bg-maroon-light text-white px-3 py-1 rounded-full text-sm">Project Management</span>
+                            <span class="bg-maroon-light text-white px-3 py-1 rounded-full text-sm">Jaringan</span>
+                            <span class="bg-maroon-light text-white px-3 py-1 rounded-full text-sm">Komputer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-600"><i class="fas fa-quote-left mr-2"></i>"Hidup Harus Diperjuangkan"<i class="fas fa-quote-right ml-2"></i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Prestasi 1 Modal -->
+    <div id="prestasi1Modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Juara 3 Lomba Peneliti Belia dan International Scientific Paper Competition</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-trophy text-gold text-4xl mr-4"></i>
+                        <div>
+                            <p class="text-lg font-semibold">Prestasi Gemilang!</p>
+                            <p class="text-sm text-gray-600">Tim RPL SMKN 10 Semarang berhasil meraih juara 3</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Detail Kompetisi</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-calendar text-gold mt-1 mr-2"></i>
+                                <span><strong>Tanggal:</strong> 3 September 2025</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-gold mt-1 mr-2"></i>
+                                <span><strong>Tempat:</strong> Auditorium PUtech Semarang</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-users text-gold mt-1 mr-2"></i>
+                                <span><strong>Peserta:</strong> 226 tim peserta</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-tasks text-gold mt-1 mr-2"></i>
+                                <span><strong>Scope:</strong>  Early Warning System AI - UMKM</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Tim Pemenang</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center bg-white p-3 rounded-lg shadow">
+                                <img src="https://smk10semarang.sch.id/wp-content/uploads/2025/08/Hikma-600x450.jpeg" alt="Student 1" class="w-12 h-12 rounded-full mr-3">
+                                <div>
+                                    <p class="font-medium"> Hikma Nurul Izza, S.Pd.</p>
+                                    <p class="text-sm text-gray-600">Guru Mapel - Ketua Tim</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center bg-white p-3 rounded-lg shadow">
+                                <img src="https://i.imgur.com/7D4h9zL.jpg" alt="Student 2" class="w-12 h-12 rounded-full mr-3">
+                                <div>
+                                    <p class="font-medium">Maya Novita Sari</p>
+                                    <p class="text-sm text-gray-600">Kelas XI RPL 3</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center bg-white p-3 rounded-lg shadow">
+                                <img src="https://i.imgur.com/5Yh6oJk.jpg" alt="Student 3" class="w-12 h-12 rounded-full mr-3">
+                                <div>
+                                    <p class="font-medium"> Arshavin Bintang Wibowo a</p>
+                                    <p class="text-sm text-gray-600">Kelas X RPL 2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-2 text-green-800">Proyek yang Dikembangkan</h4>
+                    <p class="text-gray-700"> Dampak inflasi, ketergantungan impor, dan kurs terhadap daya tahan UMKM. Dari hasil riset tersebut, keduanya menawarkan solusi sistem berbasis kecerdasan buatan yang mampu memantau kurs rupiah, harga barang, serta memberikan mitigasi risiko bagi pelaku UMKM menghadapi volatilitas global.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Industri 1 Modal -->
+    <div id="industri1Modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">PT. Telkom Indonesia</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="flex items-center">
+                        <img src="logo_telkom.jpg" alt="Telkom" class="w-24 h-24 object-contain mr-6">
+                        <div>
+                            <p class="text-lg font-semibold">Mitra Strategis Sejak 2020</p>
+                            <p class="text-sm text-gray-600">Kerjasama dalam bidang magang dan rekrutmen</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Program Kerjasama</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-user-graduate text-gold mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Program Magang</p>
+                                    <p class="text-sm text-gray-600">Kuota 20 siswa/tahun untuk magang 3 bulan</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-briefcase text-gold mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Rekrutmen Langsung</p>
+                                    <p class="text-sm text-gray-600">Prioritas untuk lulusan terbaik RPL</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chalkboard-teacher text-gold mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Guest Lecture</p>
+                                    <p class="text-sm text-gray-600">Profesional Telkom sebagai pembicara tamu</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Benefit untuk Siswa</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-certificate text-gold mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Sertifikasi</p>
+                                    <p class="text-sm text-gray-600">Sertifikasi kompetensi dari Telkom</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-money-bill-wave text-gold mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Uang Saku</p>
+                                    <p class="text-sm text-gray-600">Rp 1.500.000/bulan selama magang</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-gold mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Kesempatan Karir</p>
+                                    <p class="text-sm text-gray-600">80% magang diterima sebagai karyawan</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-600"><i class="fas fa-info-circle mr-2"></i>Sejak 2020, sudah 60 siswa RPL SMKN 10 Semarang berhasil mengikuti program magang di PT. Telkom Indonesia dan 45 di antaranya telah bekerja tetap.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Karir 1 Modal -->
+    <div id="karir1Modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Web Developer</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-lg font-semibold">Profesional dalam Pengembangan Web</p>
+                            <p class="text-sm text-gray-600">Salah satu karir paling diminati di era digital</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm text-gray-600">Rata-rata Gaji</p>
+                            <p class="text-2xl font-bold text-maroon">Rp 5-15 Juta/bulan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Tanggung Jawab Utama</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold mt-1 mr-2"></i>
+                                <span>Mengembangkan website dan aplikasi web</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold mt-1 mr-2"></i>
+                                <span>Menulis kode yang clean dan maintainable</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold mt-1 mr-2"></i>
+                                <span>Collaborate dengan designer dan product manager</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold mt-1 mr-2"></i>
+                                <span>Melakukan testing dan debugging</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-gold mt-1 mr-2"></i>
+                                <span>Optimasi performa website</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Skill yang Dibutuhkan</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="font-medium text-sm mb-1">Technical Skills</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-maroon-light text-white px-2 py-1 rounded text-xs">HTML/CSS</span>
+                                    <span class="bg-maroon-light text-white px-2 py-1 rounded text-xs">JavaScript</span>
+                                    <span class="bg-maroon-light text-white px-2 py-1 rounded text-xs">React/Vue</span>
+                                    <span class="bg-maroon-light text-white px-2 py-1 rounded text-xs">Node.js</span>
+                                    <span class="bg-maroon-light text-white px-2 py-1 rounded text-xs">Git</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="font-medium text-sm mb-1">Soft Skills</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-gold text-maroon px-2 py-1 rounded text-xs">Problem Solving</span>
+                                    <span class="bg-gold text-maroon px-2 py-1 rounded text-xs">Communication</span>
+                                    <span class="bg-gold text-maroon px-2 py-1 rounded text-xs">Teamwork</span>
+                                    <span class="bg-gold text-maroon px-2 py-1 rounded text-xs">Time Management</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-2">Path Karir</h4>
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="text-center">
+                            <div class="bg-white p-3 rounded-lg mb-2">
+                                <i class="fas fa-user text-maroon"></i>
+                            </div>
+                            <p>Junior Developer</p>
+                            <p class="text-xs text-gray-600">0-2 tahun</p>
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="bg-white p-3 rounded-lg mb-2">
+                                <i class="fas fa-user text-maroon"></i>
+                            </div>
+                            <p>Mid Developer</p>
+                            <p class="text-xs text-gray-600">2-5 tahun</p>
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="bg-white p-3 rounded-lg mb-2">
+                                <i class="fas fa-user text-maroon"></i>
+                            </div>
+                            <p>Senior Developer</p>
+                            <p class="text-xs text-gray-600">5+ tahun</p>
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="bg-white p-3 rounded-lg mb-2">
+                                <i class="fas fa-crown text-gold"></i>
+                            </div>
+                            <p>Tech Lead/CTO</p>
+                            <p class="text-xs text-gray-600">8+ tahun</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistik Modal -->
+    <div id="statistikModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Detail Statistik Kelulusan</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-maroon mb-2">100%</div>
+                        <p class="text-lg">Tingkat Kelulusan</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Perbandingan Tahunan</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span>2022</span>
+                                <span class="font-semibold">99%</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>2023</span>
+                                <span class="font-semibold">99%</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span>2024</span>
+                                <span class="font-semibold">100%</span>
+                            </div>
+                            <div class="flex justify-between items-center bg-gold p-2 rounded">
+                                <span>2025</span>
+                                <span class="font-semibold text-maroon">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Pencapaian</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span>Di atas rata-rata nasional (90%)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span>90% siswa langsung bekerja</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold mt-1 mr-2"></i>
+                                <span>10% siswa melanjutkan perguruan tinggi</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-600"><i class="fas fa-info-circle mr-2"></i>Tingkat kelulusan yang tinggi didukung oleh kurikulum yang relevan dengan industri, pembimbingan karir, dan jaringan kerjasama dengan perusahaan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Siswa Total Modal -->
+    <div id="siswaTotalModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Detail Siswa Aktif</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-maroon mb-2">240</div>
+                        <p class="text-lg">Total Siswa Aktif</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <div class="text-2xl font-bold text-maroon">71</div>
+                        <p class="text-sm text-gray-600">Kelas X</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <div class="text-2xl font-bold text-maroon">105</div>
+                        <p class="text-sm text-gray-600">Kelas XI</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow text-center">
+                        <div class="text-2xl font-bold text-maroon">106</div>
+                        <p class="text-sm text-gray-600">Kelas XII</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-2">Pertumbuhan Siswa</h4>
+                    <p class="text-sm text-gray-600">Jumlah siswa terus meningkat setiap tahunnya dengan pertumbuhan rata-rata 12% per tahun, menunjukkan minat yang tinggi terhadap jurusan RPL.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mitra Modal -->
+    <div id="mitraModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Mitra Industri</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-maroon mb-2">50+</div>
+                        <p class="text-lg">Mitra Industri</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Kategori Mitra</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-building text-gold mt-1 mr-2"></i>
+                                <span><strong>Perusahaan Teknologi:</strong> 25 mitra</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-graduation-cap text-gold mt-1 mr-2"></i>
+                                <span><strong>Perguruan Tinggi:</strong> 15 mitra</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-certificate text-gold mt-1 mr-2"></i>
+                                <span><strong>Lembaga Sertifikasi:</strong> 10 mitra</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Program Kerjasama</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-handshake text-gold mt-1 mr-2"></i>
+                                <span>Magang Industri</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-briefcase text-gold mt-1 mr-2"></i>
+                                <span>Rekrutmen Langsung</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chalkboard-teacher text-gold mt-1 mr-2"></i>
+                                <span>Guest Lecture</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-project-diagram text-gold mt-1 mr-2"></i>
+                                <span>Proyek Kolaboratif</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kelas Modal -->
+    <div id="kelasModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Detail Kelas Aktif</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-maroon mb-2">12</div>
+                        <p class="text-lg">Kelas Aktif</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Kelas X</h4>
+                        <p class="text-sm text-gray-600">2 kelas</p>
+                        <p class="text-sm text-gray-600"> 36 siswa/kelas</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Kelas XI</h4>
+                        <p class="text-sm text-gray-600">3  kelas</p>
+                        <p class="text-sm text-gray-600">36 siswa/kelas</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Kelas XII</h4>
+                        <p class="text-sm text-gray-600">3 kelas</p>
+                        <p class="text-sm text-gray-600">36 siswa/kelas</p>
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <p class="text-sm text-gray-600"><i class="fas fa-info-circle mr-2"></i>Setiap kelas dilengkapi dengan fasilitas lengkap dan dibimbing oleh guru profesional yang berpengalaman di bidangnya.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kelulusan Modal -->
+    <div id="kelulusanModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Tingkat Kelulusan Detail</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-maroon mb-2">100%</div>
+                        <p class="text-lg">Tingkat Kelulusan</p>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Distribusi Kelulusan</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-lg shadow">
+                                <div class="flex justify-between">
+                                    <span>Lulus Tepat Waktu</span>
+                                    <span class="font-semibold text-maroon">90%</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg shadow">
+                                <div class="flex justify-between">
+                                    <span>Lulus dengan Nilai Bagus</span>
+                                    <span class="font-semibold text-maroon">85%</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg shadow">
+                                <div class="flex justify-between">
+                                    <span>Lulus dengan Predikat Cumlaude</span>
+                                    <span class="font-semibold text-maroon">25%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3 text-maroon">Pencapaian Tambahan</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-medal text-gold mt-1 mr-2"></i>
+                                <span>100% siswa lulus ujian kompetensi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-certificate text-gold mt-1 mr-2"></i>
+                                <span>80% siswa memiliki sertifikasi internasional</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-briefcase text-gold mt-1 mr-2"></i>
+                                <span>75% siswa sudah diterima kerja sebelum lulus</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alamat Modal -->
+    <div id="alamatModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Alamat Lengkap</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-map-marker-alt text-4xl text-maroon mr-4"></i>
+                        <div>
+                            <p class="text-lg font-semibold">SMKN 10 Semarang</p>
+                            <p class="text-gray-600">Jurusan Rekayasa Perangkat Lunak</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Alamat</h4>
+                        <p class="text-gray-700">Jl. Pemuda No. 150, Semarang, Jawa Tengah 50132</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Koordinat</h4>
+                        <p class="text-gray-700">Latitude: -6.9667, Longitude: 110.4167</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Akses</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• 500m dari Simpang Lima</li>
+                            <li>• 1km dari Stasiun Tawang</li>
+                            <li>• Dilalui berbagai angkutan umum</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Telepon Modal -->
+    <div id="teleponModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Informasi Telepon</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-phone text-4xl text-maroon mr-4"></i>
+                        <div>
+                            <p class="text-2xl font-semibold">(024) 8312345</p>
+                            <p class="text-gray-600">Kantor Jurusan RPL</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Jam Operasional</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Senin - Jumat: 07:00 - 16:00</li>
+                            <li>• Sabtu: 07:00 - 12:00</li>
+                            <li>• Minggu & Hari Libur: Tutup</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Kontak Lain</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Fax: (024) 8312346</li>
+                            <li>• Hotline: 0812-3456-7890</li>
+                            <li>• WhatsApp: 0812-3456-7890</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Modal -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Informasi Email</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-envelope text-4xl text-maroon mr-4"></i>
+                        <div>
+                            <p class="text-2xl font-semibold">rpl@smkn10.sch.id</p>
+                            <p class="text-gray-600">Email Resmi Jurusan RPL</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Divisi Email</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Humas: humas.rpl@smkn10.sch.id</li>
+                            <li>• Pendaftaran: pendaftaran.rpl@smkn10.sch.id</li>
+                            <li>• Kerjasama: kerjasama.rpl@smkn10.sch.id</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Waktu Respon</h4>
+                        <p class="text-sm text-gray-700">Email akan dibalas maksimal 2x24 jam pada hari kerja.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Website Modal -->
+    <div id="websiteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Informasi Website</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-globe text-4xl text-maroon mr-4"></i>
+                        <div>
+                            <p class="text-2xl font-semibold">www.smkn10.sch.id/rpl</p>
+                            <p class="text-gray-600">Website Resmi Jurusan RPL</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Fitur Website</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Informasi lengkap jurusan</li>
+                            <li>• Pendaftaran online</li>
+                            <li>• Download materi pembelajaran</li>
+                            <li>• Galeri kegiatan</li>
+                            <li>• Berita terkini</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold mb-2 text-maroon">Media Sosial</h4>
+                        <div class="flex space-x-3">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Modal -->
+    <div id="socialModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Media Sosial</h2>
+                <div class="bg-cream p-6 rounded-lg mb-6">
+                    <p class="text-lg">Ikuti kami di berbagai platform media sosial untuk mendapatkan informasi terbaru.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg shadow flex items-center">
+                        <i class="fab fa-facebook-f text-3xl text-blue-600 mr-4"></i>
+                        <div>
+                            <p class="font-semibold">Facebook</p>
+                            <p class="text-sm text-gray-600">facebook.com/rpl.smkn10</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow flex items-center">
+                        <i class="fab fa-instagram text-3xl text-pink-600 mr-4"></i>
+                        <div>
+                            <a href="https://www.instagram.com/rpl.smkn10smg?utm_source=ig_web_button_share_sheet&igsh=MWNnNHUwc2dnN3Y3dQ==" target="_blank" class="block"></a>
+                            <p class="font-semibold">Instagram</p>
+                            <p class="text-sm text-gray-600">@rpl_smkn10</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow flex items-center">
+                        <i class="fab fa-youtube text-3xl text-red-600 mr-4"></i>
+                        <div>
+                            <p class="font-semibold">YouTube</p>
+                            <p class="text-sm text-gray-600">RPL SMKN 10 Official</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow flex items-center">
+                        <i class="fab fa-linkedin-in text-3xl text-blue-700 mr-4"></i>
+                        <div>
+                            <p class="font-semibold">LinkedIn</p>
+                            <p class="text-sm text-gray-600">SMKN 10 Semarang - RPL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Detail Modal -->
+    <div id="heroDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="p-8">
+                <h2 class="text-2xl font-bold mb-4 text-maroon">Jurusan Unggulan</h2>
+                <img src="komputer.jpg" alt="Tentang RPL" class="max-w-md md:max-w-lg rounded-lg mb-6 mx-auto">
+                <div class="space-y-4">
+                    <div class="bg-cream p-4 rounded-lg">
+                        <h3 class="font-semibold mb-2 text-maroon">Mengapa Memilih RPL?</h3>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Kurikulum terkini sesuai kebutuhan industri</li>
+                            <li>• Fasilitas lengkap dan modern</li>
+                            <li>• Guru profesional dan berpengalaman</li>
+                            <li>• Jaringan kerjasama dengan industri luas</li>
+                            <li>• Tingkat kelulusan dan penyerapan kerja tinggi</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h3 class="font-semibold mb-2 text-maroon">Pencapaian</h3>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Juara 1 LKS Web Technology Tingkat Provinsi 2023</li>
+                            <li>• Finalis Hackathon Nasional 2023</li>
+                            <li>• 50 siswa tersertifikasi BNSP</li>
+                            <li>• 100% tingkat kelulusan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="modal">
+        <span class="close text-white text-4xl">&times;</span>
+        <div class="flex items-center justify-center h-full">
+            <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full rounded-2xl">
+        </div>
+    </div>
+
+    <script>
+        // Hide loading screen when page is loaded
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.display = 'none';
+            }, 1000);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+
+            // Show/hide back to top button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Back to top button
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking on close button
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Gallery filter
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter items
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // Gallery lightbox
+        function openGalleryModal(galleryId) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = `https://i.imgur.com/${galleryId}.jpg`;
+            lightbox.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Create success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'fixed top-20 right-4 bg-maroon text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fadeInUp';
+            successMsg.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Pesan berhasil dikirim! Kami akan segera menghubungi Anda.';
+            
+            document.body.appendChild(successMsg);
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                successMsg.remove();
+            }, 5000);
+        });
+
+        // Newsletter form
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            
+            // Create success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'fixed top-20 right-4 bg-gold text-maroon px-6 py-3 rounded-lg shadow-lg z-50 animate-fadeInUp font-medium';
+            successMsg.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Terima kasih! Email Anda telah terdaftar.';
+            
+            document.body.appendChild(successMsg);
+            
+            // Reset form
+            event.target.reset();
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                successMsg.remove();
+            }, 5000);
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+    <!-- Modal untuk Galeri -->
+<div id="galleryModal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50">
+  <span onclick="closeGalleryModal()" class="absolute top-6 right-8 text-white text-4xl cursor-pointer">&times;</span>
+  <img id="galleryModalImg" src="" class="max-h-[90%] max-w-[90%] rounded-xl shadow-2xl">
+</div>
+
+<script>
+function openGalleryModal(imgId) {
+  // Ambil src gambar dari elemen yang diklik
+  const imgElement = document.querySelector(`[onclick="openGalleryModal('${imgId}')"] img`);
+  const modal = document.getElementById("galleryModal");
+  const modalImg = document.getElementById("galleryModalImg");
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  modalImg.src = imgElement.src;
+}
+
+function closeGalleryModal() {
+  const modal = document.getElementById("galleryModal");
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+}
+</script>
+
+</body>
+</html>
